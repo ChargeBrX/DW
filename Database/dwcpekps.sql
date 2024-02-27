@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2024 at 02:04 PM
+-- Generation Time: Feb 27, 2024 at 02:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -26,40 +26,180 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `department`
 --
--- Error reading structure for table dwcpekps.department: #1932 - Table &#039;dwcpekps.department&#039; doesn&#039;t exist in engine
--- Error reading data for table dwcpekps.department: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;FROM `dwcpekps`.`department`&#039; at line 1
+
+CREATE TABLE `department` (
+  `departmentId` int(11) NOT NULL,
+  `facultyId` int(11) NOT NULL,
+  `depardmentCode` varchar(5) NOT NULL,
+  `departmentTh` varchar(50) NOT NULL,
+  `departmentEng` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`departmentId`, `facultyId`, `depardmentCode`, `departmentTh`, `departmentEng`) VALUES
+(1, 1, 'E29', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `faculty`
 --
--- Error reading structure for table dwcpekps.faculty: #1932 - Table &#039;dwcpekps.faculty&#039; doesn&#039;t exist in engine
--- Error reading data for table dwcpekps.faculty: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;FROM `dwcpekps`.`faculty`&#039; at line 1
+
+CREATE TABLE `faculty` (
+  `facultyId` int(11) NOT NULL,
+  `facultyTh` varchar(50) NOT NULL,
+  `facultyEng` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `faculty`
+--
+
+INSERT INTO `faculty` (`facultyId`, `facultyTh`, `facultyEng`) VALUES
+(1, 'วิศวกรรมศาสตร์ กำแพงแสน', 'Engineering Kampangsean');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `gender`
 --
--- Error reading structure for table dwcpekps.gender: #1932 - Table &#039;dwcpekps.gender&#039; doesn&#039;t exist in engine
--- Error reading data for table dwcpekps.gender: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;FROM `dwcpekps`.`gender`&#039; at line 1
+
+CREATE TABLE `gender` (
+  `genderId` int(11) NOT NULL,
+  `genderTh` varchar(5) NOT NULL,
+  `genderEng` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `gender`
+--
+
+INSERT INTO `gender` (`genderId`, `genderTh`, `genderEng`) VALUES
+(1, 'ชาย', 'Male'),
+(2, 'หญิง', 'Femal');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `generetion`
 --
--- Error reading structure for table dwcpekps.generetion: #1932 - Table &#039;dwcpekps.generetion&#039; doesn&#039;t exist in engine
--- Error reading data for table dwcpekps.generetion: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;FROM `dwcpekps`.`generetion`&#039; at line 1
+
+CREATE TABLE `generetion` (
+  `generetionId` int(11) NOT NULL,
+  `generetion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `generetion`
+--
+
+INSERT INTO `generetion` (`generetionId`, `generetion`) VALUES
+(1, 63),
+(2, 64),
+(3, 65),
+(4, 66);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `student`
 --
--- Error reading structure for table dwcpekps.student: #1932 - Table &#039;dwcpekps.student&#039; doesn&#039;t exist in engine
--- Error reading data for table dwcpekps.student: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;FROM `dwcpekps`.`student`&#039; at line 1
+
+CREATE TABLE `student` (
+  `studentId` varchar(10) NOT NULL,
+  `departmentId` int(11) NOT NULL,
+  `genderId` int(11) NOT NULL,
+  `generetionId` int(11) NOT NULL,
+  `title` varchar(6) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`departmentId`),
+  ADD KEY `facultyId` (`facultyId`);
+
+--
+-- Indexes for table `faculty`
+--
+ALTER TABLE `faculty`
+  ADD PRIMARY KEY (`facultyId`);
+
+--
+-- Indexes for table `gender`
+--
+ALTER TABLE `gender`
+  ADD PRIMARY KEY (`genderId`);
+
+--
+-- Indexes for table `generetion`
+--
+ALTER TABLE `generetion`
+  ADD PRIMARY KEY (`generetionId`);
+
+--
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`studentId`),
+  ADD KEY `departmentId` (`departmentId`),
+  ADD KEY `genderId` (`genderId`),
+  ADD KEY `generetionId` (`generetionId`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `department`
+--
+ALTER TABLE `department`
+  MODIFY `departmentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `faculty`
+--
+ALTER TABLE `faculty`
+  MODIFY `facultyId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `gender`
+--
+ALTER TABLE `gender`
+  MODIFY `genderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `generetion`
+--
+ALTER TABLE `generetion`
+  MODIFY `generetionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `department`
+--
+ALTER TABLE `department`
+  ADD CONSTRAINT `department_ibfk_1` FOREIGN KEY (`facultyId`) REFERENCES `faculty` (`facultyId`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student`
+--
+ALTER TABLE `student`
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`departmentId`) REFERENCES `department` (`departmentId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`genderId`) REFERENCES `gender` (`genderId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `student_ibfk_3` FOREIGN KEY (`generetionId`) REFERENCES `generetion` (`generetionId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
