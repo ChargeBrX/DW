@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2024 at 02:25 PM
+-- Generation Time: Feb 27, 2024 at 02:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `department` (
   `departmentId` int(11) NOT NULL,
   `facultyId` int(11) NOT NULL,
-  `depardmentCode` varchar(5) NOT NULL,
+  `departmentCode` varchar(5) NOT NULL,
   `departmentTh` varchar(50) NOT NULL,
   `departmentEng` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -39,7 +39,7 @@ CREATE TABLE `department` (
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`departmentId`, `facultyId`, `depardmentCode`, `departmentTh`, `departmentEng`) VALUES
+INSERT INTO `department` (`departmentId`, `facultyId`, `departmentCode`, `departmentTh`, `departmentEng`) VALUES
 (1, 1, 'E29', 'วิศวกรรมคอมพิวเตอร์', 'Computer Engineering');
 
 -- --------------------------------------------------------
@@ -116,6 +116,15 @@ CREATE TABLE `student` (
   `title` varchar(6) NOT NULL,
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`studentId`, `departmentId`, `genderId`, `generetionId`, `title`, `name`) VALUES
+('6320500603', 1, 2, 1, 'นางสาว', 'ภัทรพร ปัญญาอุดมพร'),
+('6320500611', 1, 1, 1, 'นาย', 'ภานุวัฒน์ จั่นจินดา'),
+('6320500654', 1, 1, 1, 'นาย', 'ศุภชัย สุขสมัย');
 
 --
 -- Indexes for dumped tables
